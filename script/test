@@ -16,7 +16,7 @@ finish() {
 
 trap finish EXIT
 
-readonly CONTAINER_NAME=nessusd
+readonly CONTAINER_NAME=docker-nessus
 
 echo "Step1: Test for basic nessus install (we remove it in step 3)"
 docker run -t -i --entrypoint bash "${IMAGE_NAME}" -c "ls /opt/nessus/etc" | grep nessus
@@ -30,4 +30,4 @@ echo "Give nessus a few seconds to fully startup"
 sleep 3
 
 echo "Step3: Test that after the docker build - the Nessus D is actually running"
-docker logs nessusd | grep "^nessusd.*${NESSUS_VERSION}"
+docker logs nessus | grep "^nessus.*${NESSUS_VERSION}"
